@@ -16,7 +16,14 @@ public class Task02Main {
 
     public static IntStream cycleGrayCode(int n) {
 
-        return null; // your implementation here
+        if (n < 1 || n > 16) {
+            throw new IllegalArgumentException("n должна быть от 1 до 16");
+        }
+        int cycleLength = 1 << n;
+
+        return IntStream.iterate(0, i -> (i + 1) % cycleLength)
+                // 2. Преобразуем индекс в код Грея
+                .map(i -> i ^ (i >> 1));
 
     }
 
